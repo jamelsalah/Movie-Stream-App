@@ -1,23 +1,18 @@
 import { StatusBar } from 'expo-status-bar';
-import React, {useEffect, useState} from 'react';
+import React, { useEffect, useState } from 'react';
 import { View, Text, FlatList } from 'react-native';
-import styled from 'styled-components/native'
+import { ThemeProvider } from 'styled-components'
 import MovieRow from './components/MovieRow'
 import api from './api'
+import themes from './themes'
+import { StyledText, Content} from './styles'
 
-const StyledText = styled.Text`
-  color: white;
-  font-size: 20px;
-  display: flex;
-`
-const StyledView = styled.View`
-  backgroundColor: black;
-`
+
 
 export default function App() {
-  var [ movieList, setMovieList ] = useState([] as any)
-  const [featureData, setFeatureData] = useState(null)
-
+  const [ movieList, setMovieList ] = useState([] as any)
+  const [ featureData, setFeatureData ] = useState(null)
+  const [ theme, setTheme ] = useState(0);
   useEffect(() => {
     const loadAll = async () => {
       const list = await api.getHomeList()
@@ -26,15 +21,17 @@ export default function App() {
     loadAll();
   }, [])
   return (
-    <View style={{marginTop: 20, padding: 10}}>
-      <FlatList 
-          data={ movieList }
-          renderItem={ ({ item }) => (
-            <MovieRow title={item.title} items={item.items}></MovieRow>
-          )}
-          keyExtractor={ item => item.id } 
-        />
-    </View>
+    <ThemeProvider theme={themes[theme]}>
+      <Content>
+        <FlatList 
+            data={ movieList }
+            renderItem={ ({item}) => (
+              <MovieRow title={item.title} items={item.items}></MovieRow>
+            )}
+            keyExtractor={ (item, index: any) => index} 
+          />
+      </Content>
+    </ThemeProvider>
   );
 }
 
