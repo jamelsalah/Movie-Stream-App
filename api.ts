@@ -37,20 +37,17 @@ export default {
             },
         ];
     },
-    // getMovieInfo: async (movieId, type) => {
-    //     let info = {};
+    getMovieInfo: async (movieId: any, type: any) => {
+        let info = {};
 
-    //     if(movieId) {
-    //         switch(type) {
-    //             case 'movie':
-    //                 info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`)
-    //             break;
-    //             case 'tv':
-    //                 info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`)
-    //             break;
-    //         }
-    //     }
+        if(movieId) {
+            switch(type) {
+                case 'movie':
+                    return  info = await basicFetch(`/movie/${movieId}?language=pt-BR&api_key=${API_KEY}`)
+                case 'tv':
+                    return info = await basicFetch(`/tv/${movieId}?language=pt-BR&api_key=${API_KEY}`)
+            }
+        }
 
-    //     return info;
-    // }
+    }
 }

@@ -8,7 +8,7 @@ export const Title =
 `
 
 export const ListArea = styled.View`
-    margin-bottom: 15px;
+    margin-bottom: 25px;
 
 `
 

@@ -5,7 +5,7 @@ export const StyledText = styled.Text`
   font-size: 20px;
   display: flex;
 `
-export const Content = styled.View`
+export const Content = styled.ScrollView`
   background: ${props => props.theme.primaryColor};
   margin-top: 20px;
   padding: 10px;
